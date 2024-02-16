@@ -1,0 +1,8 @@
+altair==5.2.0
+fastapi==0.109.2
+Flask==3.0.2
+pandas==2.2.0
+pydantic==2.6.1
+spacy==3.7.2
+spacy_streamlit==1.0.6
+streamlit==1.31.1
