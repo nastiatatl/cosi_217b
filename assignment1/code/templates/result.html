@@ -1,0 +1,62 @@
+<html>
+
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+  </head>
+
+  <style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .spacer-column {
+        width: 20px; 
+    }
+</style>
+
+  <body>
+
+    <h2>Name Entity Parsing</h2>
+
+    <p>Processing results:</p>
+
+    <div>
+      {{ markup | safe }}
+    </div>
+
+    <h2>Dependencies by Sentence</h2>
+    {% for idx in range(parsed_sent_list | length) %}
+      <p>{{ sentences[idx] }}</p>
+      <table>
+          <tr>
+              <th>Parent</th>
+              <th>Label</th>
+              <th>Child</th>
+          </tr>
+          {% for row in parsed_sent_list[idx] %}
+          <tr>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td>
+              <td>{{ row[2] }}</td>
+          </tr>
+          {% endfor %}
+      </table>
+    <br>
+    {% endfor %}
+
+    <p><a href="">back to form</a></p>
+
+  </body>
+
+</html>
