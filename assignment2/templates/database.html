@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Database</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Database</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Entity</th>
+                <th>NER Label</th>
+                <th>Head</th>
+                <th>Dependency Label</th>
+                <th>Child</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>{{ '' if loop.index > 1 and entity.text == entities[loop.index0 - 1].text else entity.text }}</td>
+                    <td>{{ '' if loop.index > 1 and entity.text == entities[loop.index0 - 1].text else entity.ner_label }}</td>
+                    <td>{{ entity.head }}</td>
+                    <td>{{ entity.dependency_label }}</td>
+                    <td>{{ entity.child }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>
+        <a href="/"><button>Back to Form</button></a>
+        <form action="/clear_database" method="post" style="display: inline;">
+            <button type="submit">Clear Database</button>
+        </form>
+    </p>
+</body>
+</html>
+
+
+
