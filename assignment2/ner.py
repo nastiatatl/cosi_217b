@@ -40,11 +40,15 @@ class SpacyDocument:
             dependencies.append((parent, label, child))
         return dependencies
     
-    def get_dependencies_by_sentence(self) -> List[List[Tuple[str, str, str]]]:
-        sentences = []
+    def get_dependencies_by_sentence(self) -> Tuple[List[List[Tuple[str, str, str]]], 
+                                                    List[Tuple[str, str, str]]]:
+        dependencies_by_sentences = []
+        all_dependencies = []
         for sent in self.doc.sents:
-            sentences.append(self.get_dependencies(sent.text))
-        return sentences
+            dependencies = self.get_dependencies(sent.text)
+            dependencies_by_sentences.append(dependencies)
+            all_dependencies.extend(dependencies)
+        return dependencies_by_sentences, all_dependencies
     
     def visualize_dependencies(self) -> Callable[..., None]:
         return visualize_parser(self.doc, title=None)    
